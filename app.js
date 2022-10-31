@@ -3,12 +3,23 @@ const fetch = require('node-fetch');
 const app = express();
 const PORT = 3100;
 const spotify = 'https://api.spotify.com/v1';
+const client_id = process.env.CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET;
 
 const getToken = async () => {
-    const getTokenUrl = 'http://localhost:3000/';
-    return fetch(getTokenUrl)
-    .then(res=>res.text());
-    
+    const clientCreds = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
+    const tokenPromise = await fetch('https://accounts.spotify.com/api/token', {
+        method: 'POST',
+        headers: {
+        'Authorization': `Basic ${clientCreds}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+        grant_type: 'client_credentials'
+        })
+    });
+    const { access_token } = (await tokenPromise.json());
+    return access_token;  
 }
 
 const getSongPlays = async (uri, token) => {
