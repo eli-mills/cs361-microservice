@@ -27,3 +27,6 @@ fetch('https://spotify-track-popularity.herokuapp.com/track-uri/2tdNI4jmNQkOT41L
 .then(res => console.log(res))
 .catch(err => console.error(err));
 ```
+
+## UMI Diagram
+![UMI diagram showing the sequence flow of the spotify track popularity microservice](./umi-diagram.png)
