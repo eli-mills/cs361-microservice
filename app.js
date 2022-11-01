@@ -22,8 +22,8 @@ const getToken = async () => {
     return access_token;  
 }
 
-const getSongPlays = async (uri, token) => {
-    console.log(`getSongPlays called with uri=${uri} and token=${token}\n`);
+const getTrackPopularity = async (uri, token) => {
+    console.log(`getTrackPopularity called with uri=${uri} and token=${token}\n`);
     const headers = {
         'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
@@ -35,21 +35,23 @@ const getSongPlays = async (uri, token) => {
 }
 
 
-app.get('/songuri/:uri', (req,res)=>{
-    console.log("Request received at song uri route.");
+app.get('/track-uri/:uri', (req,res)=>{
+    console.log("Request received at track-uri route.");
 
     const uri = req.params.uri;
-    
-    // Get API token
+
     getToken()
-    .then(token => getSongPlays(uri, token))
+    .then(token => getTrackPopularity(uri, token))
     .then(popularity => {
         console.log(`Popularity retrieved: ${popularity}`);
         res.send(popularity.toString());
     })
-    .catch(err=>console.log(`There was an error: ${err}`));
+    .catch(err => {
+        console.error(`There was an error: ${err}`);
+        res.status(500).send(`Error with Spotify API call. Error message:\n${err}`);
+    });
     
 })
 
 
-app.listen(PORT, ()=>console.log(`Server listening on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));
