@@ -1,7 +1,7 @@
 # Killshot - Magdalena Bay
-GET https://cs361-spotify-plays.herokuapp.com/songuri/2tdNI4jmNQkOT41LSTSA17 
+GET https://spotify-track-popularity.onrender.com/track-uri/2tdNI4jmNQkOT41LSTSA17 
 
 ###
 
 # Humble - Kendrick Lamar
-GET https://cs361-spotify-plays.herokuapp.com/songuri/7KXjTSCq5nL1LoYtL7XAwS
+GET https://spotify-track-popularity.onrender.com/track-uri/7KXjTSCq5nL1LoYtL7XAwS
