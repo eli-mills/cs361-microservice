@@ -4,14 +4,14 @@ This app provides a REST route to easily request and receive a track's popularit
 ## Making a Request
 Use the microservice by sending a `GET` request to 
 
-`https://spotify-track-popularity.herokuapp.com/track-uri/[insert track uri here]`,
+`https://spotify-track-popularity.onrender.com/track-uri/[insert track uri here]`,
  
 where the portion in brackets will be replaced with the track's URI. 
 
 Here is an example call using the Javascript `fetch` API: 
 
 ```
-fetch('https://spotify-track-popularity.herokuapp.com/track-uri/2tdNI4jmNQkOT41LSTSA17')
+fetch('https://spotify-track-popularity.onrender.com/track-uri/2tdNI4jmNQkOT41LSTSA17')
 ```
 
 ## Parsing the Response
@@ -22,7 +22,7 @@ The following is an example Node.js app calling this API. On success, the song's
 ```
 const fetch = require('node-fetch');
 
-fetch('https://spotify-track-popularity.herokuapp.com/track-uri/2tdNI4jmNQkOT41LSTSA17')
+fetch('https://spotify-track-popularity.onrender.com/track-uri/2tdNI4jmNQkOT41LSTSA17')
 .then(res => res.text())
 .then(res => console.log(res))
 .catch(err => console.error(err));
